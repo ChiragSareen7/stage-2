@@ -30,15 +30,10 @@ const initPlayers = (players) => {
         detailedPlayers[i]={
             strength: getRandomStrength(),
             image: `./images/super-${i+1}.png`,
-            name:`${players[i]}`
-        
+            name:`${players[i]}`,
+            type: i % 2 === 0 ? "hero" : "villain"
         }
-        if(i%2==0){
-            detailedPlayers[i].type="Hero";
-        }
-        else if(i%2!=0){
-            detailedPlayers[i].type="Villain";
-        }
+
     }
 
     return detailedPlayers;
@@ -49,7 +44,7 @@ const getRandomStrength = () => {
     // Return a random integer (0,100]
     // Note: You can use Math.random() and Math.ceil()
     let unpredictable=Math.ceil(Math.random() * 100);
-    unpredictable()
+    return unpredictable;
 }
 
 const buildPlayers = (players, type) => {
@@ -57,7 +52,7 @@ const buildPlayers = (players, type) => {
     for(let i=0;i<players.length;i++){
         if(players[i].type===type){
             fragment+=`<div class="player">
-            <img src="${players[i].image}">
+            <img src="${players[i].image}" alt="">
             <div class="name">${players[i].name}</div>
             <div class="strength">${players[i].strength}</div>
          </div>`;
